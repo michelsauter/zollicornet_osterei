@@ -7,14 +7,24 @@ import os
 st.set_page_config(page_title="Magische Ice Cream Macher", page_icon="🍦", layout="centered")
 
 # --- HIDE STREAMLIT STYLE ---
-hide_st_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_st_style, unsafe_allow_html=True)
+st.markdown("""
+    <style>
+        /* Hides the top right hamburger menu */
+        #MainMenu {visibility: hidden;}
+        
+        /* Hides the entire footer bar */
+        footer {visibility: hidden;}
+        
+        /* Hides the 'Manage App' and 'Made with Streamlit' specifically */
+        .viewerBadge_container__1QS1n {display: none !important;}
+        .stAppDeployButton {display: none !important;}
+        
+        /* Hides the header decoration line */
+        header {visibility: hidden;}
+        
+        #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
+    </style>
+""", unsafe_allow_html=True)
 
 
 # --- 2. SOUND ENGINE ---
