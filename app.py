@@ -104,7 +104,7 @@ if sprinkle_amount > 90 and st.session_state.flavor_score >= 5:
     if secret_code == "YUM":
         st.info("D'Maschine macht komischi Grüsch... 🎶")
         if st.button("ACTIVATE CHAOS CONE!"):
-            play_local_sound("rabbit-sound.mp3")
+            play_local_sound("rabbit-sounds.mp3")
             st.snow()
             st.toast("CHAOS MODE!", icon="🎉")
             st.write("Das git a riese Glace!")
