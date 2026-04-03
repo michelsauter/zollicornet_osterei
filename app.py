@@ -15,11 +15,11 @@ if 'special_code_active' not in st.session_state:
 
 # Function to "send" the ice cream
 def deliver_ice_cream(flavor, topping):
-    st.toast(f"Hooray! A super {flavor} ice cream with {topping} is coming!", icon="🍨")
+    st.toast(f"Hooray! A super {flavor} Glacer mit {topping} kunt!", icon="🍨")
     st.balloons()
     st.snow()  # THE MAIN ICE CREAM CELEBRATION
-    time.sleep(1)
-    st.success(f"Diiiiiing! Your {flavor} {topping} cone is ready! 🍦")
+    time.sleep(5)
+    st.success(f"Diiiiiing! Dini {flavor} Glace mit {topping} isch parat! - Das isch doch e Zollicornet!!🍦")
 
 # --- THE UI STARTS HERE ---
 st.title("🌈 Hallo Laurin und Severin, wär wot e Glace!")
@@ -67,13 +67,13 @@ elif sprinkle_amount == 0:
 else:
     st.write(f"Nume {sprinkle_amount} das isch doch z wenig obe druf")
 
-chosen_topping = st.selectbox("Pick a bonus topping:", ["None", "Rägetröpfli", "Smarties", "Schoggistreusel"])
+chosen_topping = st.selectbox("Wähl e Topping:", ["None", "Rägetröpfli", "Smarties", "Schoggistreusel"])
 
 # --- THE INTERACTIVE EASTER EGG (The 'Hidden' Button) ---
 if sprinkle_amount > 90 and st.session_state.flavor_score >= 5:
     st.markdown("---")
     st.subheader("🤫 Psssst... You unlocked the SECRET button!")
-    st.write("This button only appears if you chose Alien Apple and maximized the sprinkles!")
+    st.write("Dä Knopf gits nume mit Himbeeri und vieel Toppings!")
     
     # Text input inside the Easter egg area
     secret_code = st.text_input("Schrib es magischs Wort (Hiwiis: 'YUM'):", "").upper()
@@ -102,12 +102,12 @@ if ready and chosen_flavor and chosen_topping:
     deliver_ice_cream(final_flavor, final_topping)
 
 elif ready and (not chosen_flavor or chosen_topping == "None"):
-    st.error("Wait! Die Galce isch no nid fertig ice cream! Mir bruche en Gschmagg und es Topping!")
+    st.error("Wait! Die Galce isch no nid fertig ice cream! Mir bruche nomol en Gschmagg und es Topping!")
 
 # --- A FINAL GIGGLE ---
-st.sidebar.title("Machine Settings ⚙️")
-if st.sidebar.checkbox("Show 'How it Works'"):
-    st.sidebar.write("1. Magic happens.")
-    st.sidebar.write("2. Streamlit is basically code magic.")
-    st.sidebar.write("3. You eat virtual ice cream.")
-    st.sidebar.write("4. We avoid brain freeze.")
+#st.sidebar.title("Machine Settings ⚙️")
+#if st.sidebar.checkbox("Show 'How it Works'"):
+#    st.sidebar.write("1. Magic happens.")
+#    st.sidebar.write("2. Streamlit is basically code magic.")
+#    st.sidebar.write("3. You eat virtual ice cream.")
+#    st.sidebar.write("4. We avoid brain freeze.")
