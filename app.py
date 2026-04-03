@@ -67,7 +67,7 @@ elif sprinkle_amount == 0:
 else:
     st.write(f"Nume {sprinkle_amount} das isch doch z wenig obe druf")
 
-chosen_topping = st.selectbox("Pick a bonus topping:", ["None", "Rainbow Drops", "Cookie Dust", "Unicorn Magic"])
+chosen_topping = st.selectbox("Pick a bonus topping:", ["None", "Rägetröpfli", "Smarties", "Schoggistreusel"])
 
 # --- THE INTERACTIVE EASTER EGG (The 'Hidden' Button) ---
 if sprinkle_amount > 90 and st.session_state.flavor_score >= 5:
@@ -76,33 +76,33 @@ if sprinkle_amount > 90 and st.session_state.flavor_score >= 5:
     st.write("This button only appears if you chose Alien Apple and maximized the sprinkles!")
     
     # Text input inside the Easter egg area
-    secret_code = st.text_input("Enter the magic word (Hint: 'YUM'):", "").upper()
+    secret_code = st.text_input("Schrib es magischs Wort (Hiwiis: 'YUM'):", "").upper()
     
     if secret_code == "YUM":
         st.session_state.special_code_active = True
         st.info("The machine is humming a funny tune... 🎶")
         if st.button("ACTIVATE CHAOS CONE!"):
             st.snow() # Double snow
-            st.toast("CHAOS MODE ENGAGED!", icon="🎉")
-            st.write("The machine made a giant, floating, rainbow-pooping unicorn ice cream!")
+            st.toast("CHAOS MODE!", icon="🎉")
+            st.write("Das git a riese Glace!")
             st.markdown("### 🦄🍦🌈💩")
 
 # --- DELIVERY SYSTEM ---
 st.markdown("---")
-st.subheader("3. Let's Eat! 😋")
+st.subheader("3. Esse mir! 😋")
 
-ready = st.checkbox("I am ready for my ice cream!")
+ready = st.checkbox("Ich bin parat zum Glace esse!")
 
 if ready and chosen_flavor and chosen_topping:
     # We combine the selections
     final_flavor = chosen_flavor
-    final_topping = f"with {sprinkle_amount} sprinkles and {chosen_topping}"
+    final_topping = f"mit {sprinkle_amount} {chosen_topping} obe druf."
     
     # Use our function to 'send' the treats
     deliver_ice_cream(final_flavor, final_topping)
 
 elif ready and (not chosen_flavor or chosen_topping == "None"):
-    st.error("Wait! You didn't finish designing your ice cream! We need flavors and toppings!")
+    st.error("Wait! Die Galce isch no nid fertig ice cream! Mir bruche en Gschmagg und es Topping!")
 
 # --- A FINAL GIGGLE ---
 st.sidebar.title("Machine Settings ⚙️")
