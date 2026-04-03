@@ -9,20 +9,29 @@ st.set_page_config(page_title="Magische Ice Cream Macher", page_icon="🍦", lay
 # --- HIDE STREAMLIT STYLE ---
 st.markdown("""
     <style>
-        /* Hides the top right hamburger menu */
+        /* 1. Hides the top right Hamburger Menu */
         #MainMenu {visibility: hidden;}
         
-        /* Hides the entire footer bar */
+        /* 2. Hides the 'Made with Streamlit' footer */
         footer {visibility: hidden;}
         
-        /* Hides the 'Manage App' and 'Made with Streamlit' specifically */
+        /* 3. Hides the floating 'Viewer Badge' (Created by...) */
         .viewerBadge_container__1QS1n {display: none !important;}
+        
+        /* 4. Hides the Streamlit Toolbar at the bottom */
+        [data-testid="stStatusWidget"] {display: none !important;}
+        
+        /* 5. Hides the 'Deploy' button if it's there */
         .stAppDeployButton {display: none !important;}
         
-        /* Hides the header decoration line */
+        /* 6. Hides the header decoration */
         header {visibility: hidden;}
         
-        #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
+        /* 7. Removes extra space at the top so it looks like a game */
+        .block-container {
+            padding-top: 1rem;
+            padding-bottom: 0rem;
+        }
     </style>
 """, unsafe_allow_html=True)
 
