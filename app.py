@@ -1,76 +1,113 @@
 import streamlit as st
-import time
 import random
+import time
 
-st.set_page_config(page_title="Nothing to see here", page_icon="🥚")
+# --- CONFIGURATION & SETUP ---
+st.set_page_config(page_title="Magical Ice Cream Maker", page_icon="🍦", layout="centered")
 
-# --- SECRET STATE ---
-if 'click_count' not in st.session_state:
-    st.session_state.click_count = 0
-if 'chaos_mode' not in st.session_state:
-    st.session_state.chaos_mode = False
+# Initialize Session State
+if 'flavor_score' not in st.session_state:
+    st.session_state.flavor_score = 0
+if 'waffle_cone' not in st.session_state:
+    st.session_state.waffle_cone = False
+if 'special_code_active' not in st.session_state:
+    st.session_state.special_code_active = False
 
-# --- THE UI ---
-st.title("Just a Productivity App™")
-st.write("This is a very serious tool for serious people. Please interact with it professionally.")
+# Function to "send" the ice cream
+def deliver_ice_cream(flavor, topping):
+    st.toast(f"Hooray! A super {flavor} ice cream with {topping} is coming!", icon="🍨")
+    st.balloons()
+    st.snow()  # THE MAIN ICE CREAM CELEBRATION
+    time.sleep(1)
+    st.success(f"Diiiiiing! Your {flavor} {topping} cone is ready! 🍦")
 
-# --- THE BAIT ---
-col1, col2 = st.columns(2)
+# --- THE UI STARTS HERE ---
+st.title("🌈 Welcome to the Magical Ice Cream Maker!")
+st.write("Let's mix up a virtual treat. But watch out for the secret buttons!")
+
+st.markdown("---")
+
+# --- INTERACTION 1: The Magic Flavor Mixer ---
+st.subheader("1. Choose Your Base Flavor 🥛")
+col1, col2, col3 = st.columns(3)
 
 with col1:
-    if st.button("Do NOT Click Me"):
-        st.session_state.click_count += 1
-        
-        if st.session_state.click_count == 1:
-            st.warning("I said 'Do NOT'. Please respect my boundaries.")
-        elif st.session_state.click_count == 2:
-            st.error("Okay, that's twice. Stop it.")
-        elif st.session_state.click_count == 3:
-            st.info("I'm going to start counting to three... oh wait.")
-        elif st.session_state.click_count >= 5:
-            st.session_state.chaos_mode = True
-            st.balloons()
-            st.toast("Look what you've done.", icon="🫠")
-
+    vanilla = st.button("Classic Vanilla 🍦")
 with col2:
-    suspicious_slider = st.slider("Reality Distortion Level", 0, 100, 0)
-    if suspicious_slider > 90:
-        st.write("🌌 *The fabric of the app is thinning...*")
+    choco = st.button("Super Chocolate 🍫")
+with col3:
+    alien = st.button("Alien Green Apple 👽🍏")
 
-# --- THE EASTER EGGS ---
+chosen_flavor = None
+if vanilla:
+    chosen_flavor = "Vanilla"
+    st.session_state.flavor_score += 1
+elif choco:
+    chosen_flavor = "Super Chocolate"
+    st.session_state.flavor_score += 1
+elif alien:
+    chosen_flavor = "Alien Green Apple"
+    st.session_state.flavor_score += 5 # Special flavor bonus
 
-# 1. The Low-Key Sass
-if st.session_state.chaos_mode:
+if chosen_flavor:
+    st.write(f"Yum! **{chosen_flavor}** is a great choice.")
+
+# --- INTERACTION 2: The Secret Topping Slider ---
+st.markdown("---")
+st.subheader("2. Add Toppings 🍬")
+st.write("Slide to add sprinkles! If you slide it too far, something funny might happen...")
+
+sprinkle_amount = st.slider("Sprinkle Level", 0, 100, 20)
+
+if sprinkle_amount > 95:
+    st.warning("WOAH! Too many sprinkles! The machine is getting goofy!")
+    st.markdown("# 🤩🍬🤩✨🤩🧁🤩")
+elif sprinkle_amount == 0:
+    st.write("Wait, zero sprinkles? You must like it simple.")
+else:
+    st.write(f"Adding {sprinkle_amount} tiny sprinkles!")
+
+chosen_topping = st.selectbox("Pick a bonus topping:", ["None", "Rainbow Drops", "Cookie Dust", "Unicorn Magic"])
+
+# --- THE INTERACTIVE EASTER EGG (The 'Hidden' Button) ---
+if sprinkle_amount > 90 and st.session_state.flavor_score >= 5:
     st.markdown("---")
-    st.subheader("⚠️ SYSTEM COMPROMISED")
+    st.subheader("🤫 Psssst... You unlocked the SECRET button!")
+    st.write("This button only appears if you chose Alien Apple and maximized the sprinkles!")
     
-    # 2. Interactive Glitch
-    user_input = st.text_input("Type 'Sorry' to fix it:", "")
-    if user_input.lower() == "sorry":
-        st.success("Apology accepted. (Not really, but I'll hide the mess.)")
-        if st.button("Reset Reality"):
-            st.session_state.click_count = 0
-            st.session_state.chaos_mode = False
-            st.rerun()
+    # Text input inside the Easter egg area
+    secret_code = st.text_input("Enter the magic word (Hint: 'YUM'):", "").upper()
     
-    # 3. Random Humor Generator
-    if st.button("Push for a bad tech joke"):
-        jokes = [
-            "Why did the web developer walk out of the restaurant? Because of the table layout.",
-            "A SQL query walks into a bar, walks up to two tables, and asks... 'Can I join you?'",
-            "Hardware: The parts of a computer that you can kick.",
-            "There are 10 types of people: those who understand binary, and those who don't."
-        ]
-        st.code(random.choice(jokes), language="markdown")
+    if secret_code == "YUM":
+        st.session_state.special_code_active = True
+        st.info("The machine is humming a funny tune... 🎶")
+        if st.button("ACTIVATE CHAOS CONE!"):
+            st.snow() # Double snow
+            st.toast("CHAOS MODE ENGAGED!", icon="🎉")
+            st.write("The machine made a giant, floating, rainbow-pooping unicorn ice cream!")
+            st.markdown("### 🦄🍦🌈💩")
 
-# 4. The "Invisible" Interaction
-st.sidebar.title("Settings")
-if st.sidebar.checkbox("Show 'The Secret'"):
-    st.sidebar.write("2026 Prediction: Streamlit will eventually develop sentience. This checkbox is the first step.")
-    st.sidebar.image("https://pillows.com/cdn/shop/products/standard-white-pillow_1024x1024.jpg?v=1571438591", 
-                     caption="A picture of a 'Cloud' for tech enthusiasts.", width=150)
+# --- DELIVERY SYSTEM ---
+st.markdown("---")
+st.subheader("3. Let's Eat! 😋")
 
-# 5. Hidden Math (Using LaTeX because why not)
-if st.session_state.click_count > 10:
-    st.write("You've clicked too much. Here is the formula for your boredom:")
-    st.latex(r"B_{ore} = \sum_{i=1}^{clicks} \frac{TimeLost}{Productivity^2}")
+ready = st.checkbox("I am ready for my ice cream!")
+
+if ready and chosen_flavor and chosen_topping:
+    # We combine the selections
+    final_flavor = chosen_flavor
+    final_topping = f"with {sprinkle_amount} sprinkles and {chosen_topping}"
+    
+    # Use our function to 'send' the treats
+    deliver_ice_cream(final_flavor, final_topping)
+
+elif ready and (not chosen_flavor or chosen_topping == "None"):
+    st.error("Wait! You didn't finish designing your ice cream! We need flavors and toppings!")
+
+# --- A FINAL GIGGLE ---
+st.sidebar.title("Machine Settings ⚙️")
+if st.sidebar.checkbox("Show 'How it Works'"):
+    st.sidebar.write("1. Magic happens.")
+    st.sidebar.write("2. Streamlit is basically code magic.")
+    st.sidebar.write("3. You eat virtual ice cream.")
+    st.sidebar.write("4. We avoid brain freeze.")
