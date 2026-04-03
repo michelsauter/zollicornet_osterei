@@ -19,7 +19,15 @@ def deliver_ice_cream(flavor, topping):
     st.balloons()
     st.snow()  # THE MAIN ICE CREAM CELEBRATION
     time.sleep(5)
-    st.success(f"Diiiiiing! Dini {flavor} Glace mit {topping} isch parat! - Das isch doch e Zollicornet!!🍦")
+    st.success(f"Diiiiiing! Dini {flavor} Glace mit {topping} isch parat!")
+    time.sleep(2)
+    st.success(f"Das isch doch e Zollicornet!!🍦")
+    time.sleep(2)
+    st.success(f"Bis bald mol, Michel")
+
+    st.markdown("### 🦄🍦🌈💩")
+
+
 
 # --- THE UI STARTS HERE ---
 st.title("🌈 Hallo Laurin und Severin, wär wot e Glace!")
@@ -55,7 +63,7 @@ if chosen_flavor:
 # --- INTERACTION 2: The Secret Topping Slider ---
 st.markdown("---")
 st.subheader("2. Und obe druf 🍬?")
-st.write("Slide to add sprinkles! If you slide it too far, something funny might happen...")
+st.write("Hi und her fahre für e Topping! Wenns ganz rechts isch passirt öppis...")
 
 sprinkle_amount = st.slider("Sprinkle Level", 0, 100, 20)
 
