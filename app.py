@@ -6,6 +6,17 @@ import os
 # --- 1. CONFIGURATION & SETUP ---
 st.set_page_config(page_title="Magische Ice Cream Macher", page_icon="🍦", layout="centered")
 
+# --- HIDE STREAMLIT STYLE ---
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
+
 # --- 2. SOUND ENGINE ---
 def play_local_sound(file_name):
     """Reads a local MP3 file and plays it in the browser using Base64."""
