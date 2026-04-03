@@ -1,4 +1,10 @@
 import streamlit as st
 
-st.title("Hello World!")
-st.write("This is my first Streamlit app deployed from GitHub.")
+st.title("Hello Chur!")
+st.write("Do isch dr Osterhas")
+
+st.write("Wotsch e Cornet?")
+
+
+if st.button("Send balloons!"):
+    st.balloons()
