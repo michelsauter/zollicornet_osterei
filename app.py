@@ -5,7 +5,22 @@ import time
 # --- CONFIGURATION & SETUP ---
 st.set_page_config(page_title="Magische Ice Cream Macher", page_icon="🍦", layout="centered")
 
-# Initialize Session State
+# --- INITIAL NAME GATE ---
+if 'user_name' not in st.session_state:
+    st.session_state.user_name = ""
+
+if st.session_state.user_name == "":
+    st.title("🍦 Willkomme bi dr magische Glace-Maschine!")
+    name_input = st.text_input("Wie heissisch du?", placeholder="Schriib do dine Name...")
+    
+    if name_input:
+        st.session_state.user_name = name_input
+        st.rerun()  # Refresh the app to show the ice cream maker
+    st.stop() # Prevents the rest of the code from running until name is entered
+
+# --- THE REST OF THE APP (Only runs if name is entered) ---
+
+# Initialize Session State for the game
 if 'flavor_score' not in st.session_state:
     st.session_state.flavor_score = 0
 if 'waffle_cone' not in st.session_state:
@@ -25,13 +40,11 @@ def deliver_ice_cream(flavor, topping):
     time.sleep(2)
     st.success(f"Bis bald mol, Michel")
 
-    st.markdown("### 🦄🍦🌈💩")
-
-
+    st.markdown("### 🦄🍦🌈")
 
 # --- THE UI STARTS HERE ---
-st.title("🌈 Hallo Laurin und Severin, wär wot e Glace!")
-st.write("Kum, mir mixe uns öppis!")
+st.title(f"🌈 Hallo {st.session_state.user_name}, wär wot e Glace!")
+st.write(f"Sali {st.session_state.user_name}! Kum, mir mixe uns öppis!")
 
 st.markdown("---")
 
@@ -80,7 +93,7 @@ chosen_topping = st.selectbox("Wähl e Topping:", ["None", "Rägetröpfli", "Sma
 # --- THE INTERACTIVE EASTER EGG (The 'Hidden' Button) ---
 if sprinkle_amount > 90 and st.session_state.flavor_score >= 5:
     st.markdown("---")
-    st.subheader("🤫 Psssst... You unlocked the SECRET button!")
+    st.subheader("🤫 Psssst... Du hesch dr SECRET Knopf gfunde!")
     st.write("Dä Knopf gits nume mit Himbeeri und vieel Toppings!")
     
     # Text input inside the Easter egg area
@@ -88,7 +101,7 @@ if sprinkle_amount > 90 and st.session_state.flavor_score >= 5:
     
     if secret_code == "YUM":
         st.session_state.special_code_active = True
-        st.info("The machine is humming a funny tune... 🎶")
+        st.info("D'Maschine macht komischi Grüsch... 🎶")
         if st.button("ACTIVATE CHAOS CONE!"):
             st.snow() # Double snow
             st.toast("CHAOS MODE!", icon="🎉")
@@ -110,12 +123,4 @@ if ready and chosen_flavor and chosen_topping:
     deliver_ice_cream(final_flavor, final_topping)
 
 elif ready and (not chosen_flavor or chosen_topping == "None"):
-    st.error("Wait! Die Galce isch no nid fertig ice cream! Mir bruche nomol en Gschmagg und es Topping!")
-
-# --- A FINAL GIGGLE ---
-#st.sidebar.title("Machine Settings ⚙️")
-#if st.sidebar.checkbox("Show 'How it Works'"):
-#    st.sidebar.write("1. Magic happens.")
-#    st.sidebar.write("2. Streamlit is basically code magic.")
-#    st.sidebar.write("3. You eat virtual ice cream.")
-#    st.sidebar.write("4. We avoid brain freeze.")
+    st.error("Wait! Die Glace isch no nid fertig! Mir bruche nomol en Gschmagg und es Topping!")
