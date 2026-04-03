@@ -9,27 +9,28 @@ st.set_page_config(page_title="Magische Ice Cream Macher", page_icon="🍦", lay
 # --- HIDE STREAMLIT STYLE ---
 st.markdown("""
     <style>
-        /* Hide the hamburger menu (top right) */
+        /* 1. Hide the standard footer and menu */
         #MainMenu {visibility: hidden;}
-        
-        /* Hide the default footer */
         footer {visibility: hidden;}
-        
-        /* Hide the decoration line at the top */
         header {visibility: hidden;}
         
-        /* Hide the 'Deploy' button */
+        /* 2. Nuke the 'Created by' badge and the toolbar wrapper */
+        .viewerBadge_container__1QS1n {display: none !important;}
         .stAppDeployButton {display: none !important;}
         
-        /* Target the 'Viewer Badge' (Created by / Hosted on Streamlit) */
-        .viewerBadge_container__1QS1n {display: none !important;}
-        div[data-testid="stDecoration"] {display: none !important;}
-        div[data-testid="stStatusWidget"] {visibility: hidden !important;}
+        /* 3. Target the Streamlit Cloud toolbar specifically */
+        [data-testid="stStatusWidget"] {display: none !important;}
+        [data-testid="stToolbar"] {display: none !important;}
         
-        /* Tighten up the spacing for a game-like feel */
-        .block-container {
-            padding-top: 1rem;
-            padding-bottom: 0rem;
+        /* 4. This targets the 'intercom' and host-injected elements */
+        iframe[title="notification"] {display: none !important;}
+        
+        /* 5. Force the app to cover the full height and hide overflow from the host */
+        #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
+        
+        /* 6. Try to hide the floating 'Manage app' button for the owner */
+        div[class^="st-emotion-cache"] > button {
+            display: none !important;
         }
     </style>
 """, unsafe_allow_html=True)
