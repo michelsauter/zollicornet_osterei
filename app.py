@@ -3,7 +3,7 @@ import random
 import time
 
 # --- CONFIGURATION & SETUP ---
-st.set_page_config(page_title="Magical Ice Cream Maker", page_icon="🍦", layout="centered")
+st.set_page_config(page_title="Magische Ice Cream Macher", page_icon="🍦", layout="centered")
 
 # Initialize Session State
 if 'flavor_score' not in st.session_state:
@@ -22,50 +22,50 @@ def deliver_ice_cream(flavor, topping):
     st.success(f"Diiiiiing! Your {flavor} {topping} cone is ready! 🍦")
 
 # --- THE UI STARTS HERE ---
-st.title("🌈 Welcome to the Magical Ice Cream Maker!")
-st.write("Let's mix up a virtual treat. But watch out for the secret buttons!")
+st.title("🌈 Hallo Laurin und Severin, wär wot e Glace!")
+st.write("Kum, mir mixe uns öppis!")
 
 st.markdown("---")
 
 # --- INTERACTION 1: The Magic Flavor Mixer ---
-st.subheader("1. Choose Your Base Flavor 🥛")
+st.subheader("1. Welle Gschmagg wotsch?🥛")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    vanilla = st.button("Classic Vanilla 🍦")
+    vanilla = st.button("Vanille 🍦")
 with col2:
-    choco = st.button("Super Chocolate 🍫")
+    choco = st.button("Schoggi 🍫")
 with col3:
-    alien = st.button("Alien Green Apple 👽🍏")
+    himbeeri = st.button("Himbeeri 🩷")
 
 chosen_flavor = None
 if vanilla:
-    chosen_flavor = "Vanilla"
+    chosen_flavor = "Vanille"
     st.session_state.flavor_score += 1
 elif choco:
-    chosen_flavor = "Super Chocolate"
+    chosen_flavor = "Schoggi"
     st.session_state.flavor_score += 1
-elif alien:
-    chosen_flavor = "Alien Green Apple"
+elif himbeeri:
+    chosen_flavor = "Himbeeri"
     st.session_state.flavor_score += 5 # Special flavor bonus
 
 if chosen_flavor:
-    st.write(f"Yum! **{chosen_flavor}** is a great choice.")
+    st.write(f"Yum! **{chosen_flavor}** isch e gueti Wahl.")
 
 # --- INTERACTION 2: The Secret Topping Slider ---
 st.markdown("---")
-st.subheader("2. Add Toppings 🍬")
+st.subheader("2. Und obe druf 🍬?")
 st.write("Slide to add sprinkles! If you slide it too far, something funny might happen...")
 
 sprinkle_amount = st.slider("Sprinkle Level", 0, 100, 20)
 
 if sprinkle_amount > 95:
-    st.warning("WOAH! Too many sprinkles! The machine is getting goofy!")
+    st.warning("WOAH! soooo viel!")
     st.markdown("# 🤩🍬🤩✨🤩🧁🤩")
 elif sprinkle_amount == 0:
-    st.write("Wait, zero sprinkles? You must like it simple.")
+    st.write("Moment, nüt obe druf, das isch doch langwilig! 😕")
 else:
-    st.write(f"Adding {sprinkle_amount} tiny sprinkles!")
+    st.write(f"Nume {sprinkle_amount} das isch doch z wenig obe druf")
 
 chosen_topping = st.selectbox("Pick a bonus topping:", ["None", "Rainbow Drops", "Cookie Dust", "Unicorn Magic"])
 
