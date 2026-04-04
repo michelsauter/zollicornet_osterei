@@ -82,7 +82,15 @@ def deliver_ice_cream(flavor, topping):
     msg_slot = st.empty()
     msg_slot.info(f"Diiiiiing! Dini {flavor} Glace {topping} isch parat!")
     time.sleep(3)
-    msg_slot.success(f"Das isch doch e ### Zollicornet!! 🍦")
+    #msg_slot.success(f"Das isch doch e ### Zollicornet!! 🍦")
+    zolli_html = f"""
+        <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; border: 1px solid #c3e6cb;">
+            Diiiiiing! Dini {flavor} Glace {topping} isch parat!<br>
+            Das isch doch e <span style="font-size: 45px; font-weight: bold; color: #2e7d32;">Zollicornet!!</span> 🍦
+        </div>
+    """
+    msg_slot.markdown(zolli_html, unsafe_allow_html=True)
+
     time.sleep(2)
     st.write(f"### Bissch iglade, bis bald mol, Michel 👋")
     st.markdown("### 🦄🍦🌈")
