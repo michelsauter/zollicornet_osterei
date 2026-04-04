@@ -59,7 +59,7 @@ if 'user_name' not in st.session_state:
 
 if st.session_state.user_name == "":
     st.title("🍦 Willkomme bi dr magische Glace-Maschine!")
-    name_input = st.text_input("Wie heissisch du?", placeholder="Schriib do dine Name...")
+    name_input = st.text_input("Wie heissisch du?", placeholder="Schriib do din Name...")
     
     if name_input:
         st.session_state.user_name = name_input
@@ -115,9 +115,9 @@ if st.session_state.chosen_flavor:
 
 # --- INTERACTION 2: Toppings ---
 st.markdown("---")
-st.subheader("2. Und obe druf 🍬?")
-sprinkle_amount = st.slider("Sprinkle Level", 0, 100, 20)
+st.subheader("2. Und obe druf, e Topping 🍬?")
 chosen_topping = st.selectbox("Wähl e Topping:", ["None", "Rägetröpfli", "Smarties", "Schoggistreusel"])
+sprinkle_amount = st.slider("Sprinkle Level", 0, 100, 20)
 
 if sprinkle_amount > 95:
     st.warning("WOAH! soooo viel!")
