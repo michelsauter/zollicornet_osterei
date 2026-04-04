@@ -82,9 +82,9 @@ def deliver_ice_cream(flavor, topping):
     msg_slot = st.empty()
     msg_slot.info(f"Diiiiiing! Dini {flavor} Glace {topping} isch parat!")
     time.sleep(3)
-    msg_slot.success(f"Das isch doch e Zollicornet!! 🍦")
+    msg_slot.success(f"Das isch doch e ### Zollicornet!! 🍦")
     time.sleep(2)
-    st.write(f"### Bis bald mol, Michel 👋")
+    st.write(f"### Bissch iglade, bis bald mol, Michel 👋")
     st.markdown("### 🦄🍦🌈")
 
 # --- 6. THE MAIN UI ---
@@ -138,7 +138,7 @@ if sprinkle_amount > 90 and st.session_state.flavor_score >= 5:
             st.snow()
             st.toast("CHAOS MODE!", icon="🎉")
             st.write("Das git a riese Glace!")
-            st.markdown("### 🦄🍦🌈💩")
+            st.markdown("### 🦄🍦🌈")
             st.balloons()
 
 # --- INTERACTION 4: Final Order ---
