@@ -129,9 +129,9 @@ if sprinkle_amount > 90 and st.session_state.flavor_score >= 5:
     st.subheader("🤫 Psssst... Du hesch dr SECRET Knopf gfunde!")
     st.write("Dä Knopf gits nume mit Himbeeri und vieel Toppings!")
     
-    secret_code = st.text_input("Schrib es magischs Wort (Hiwiis: 'YUM'):", "").upper()
+    secret_code = st.text_input("Schrib es magischs Wort (Hiwiis: 'njam'):", "").upper()
     
-    if secret_code == "YUM":
+    if secret_code == "NJAM":
         st.info("D'Maschine macht komischi Grüsch... 🎶")
         if st.button("ACTIVATE CHAOS CONE!"):
             play_local_sound("rabbit-sounds.mp3")
