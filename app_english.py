@@ -86,7 +86,7 @@ def deliver_ice_cream(flavor, topping):
     zolli_html = f"""
         <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; border: 1px solid #c3e6cb;">
             Diiiiiing! Dini {flavor} Glace {topping} isch parat!<br>
-            Das isch doch e <span style="font-size: 45px; font-weight: bold; color: #2e7d32;">Zollicornet!!</span> 🍦
+            That is a  <span style="font-size: 45px; font-weight: bold; color: #2e7d32;">Zollicornet!!</span> 🍦
         </div>
     """
     msg_slot.markdown(zolli_html, unsafe_allow_html=True)
@@ -114,8 +114,8 @@ with col2:
         st.session_state.chosen_flavor = "Chocolate"
         st.session_state.flavor_score = 1
 with col3:
-    if st.button("Strawberry 🩷"):
-        st.session_state.chosen_flavor = "Strawberry"
+    if st.button("Raspberry 🩷"):
+        st.session_state.chosen_flavor = "Raspberry"
         st.session_state.flavor_score = 5 # Key for Easter Egg
 
 if st.session_state.chosen_flavor:
